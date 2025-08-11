@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-color)', color: 'var(--text-color)', transition: 'background 0.3s, color 0.3s' }}>
+    <div className="min-h-screen bg-gray-900 text-white">
       <Navigation />
       <main>{children}</main>
     </div>

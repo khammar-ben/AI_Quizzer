@@ -22,14 +22,14 @@ const Home = () => {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg-color)', color: 'var(--text-color)', display: 'flex', flexDirection: 'column', transition: 'background 0.3s, color 0.3s' }}>
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
       {/* Hero Section */}
-      <div style={{ background: 'linear-gradient(135deg, var(--bg-color) 0%, var(--accent-blue) 100%)', padding: '6rem 0' }}>
+      <div className="bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 style={{ color: 'var(--text-color)' }} className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-up">
-            Welcome to <span style={{ color: 'var(--accent-blue)' }} className="drop-shadow-lg">Quizzer AI</span>
+          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-up text-white">
+            Welcome to <span className="text-blue-400 drop-shadow-lg">Quizzer AI</span>
           </h1>
-          <p style={{ color: 'var(--text-color)' }} className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto animate-fade-in-up delay-200">
+          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto animate-fade-in-up delay-200 text-gray-200">
             Transform your documents into interactive quizzes instantly. Leverage cutting-edge AI to create engaging questions tailored to your content.
           </p>
           {!user && (
@@ -45,21 +45,21 @@ const Home = () => {
       </div>
 
       {user && (
-        <div style={{ background: 'var(--bg-color)', padding: '6rem 0' }}>
+        <div className="bg-gray-900 py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="text-3xl font-bold text-white text-center mb-10">Quick Actions</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <Link to="/create-quiz" className="bg-gray-700 p-8 rounded-xl text-center hover:bg-gray-600 transition-all duration-200 transform hover:-translate-y-1 shadow-lg flex flex-col items-center justify-center">
+              <Link to="/create-quiz" className="bg-gray-800 p-8 rounded-xl text-center hover:bg-gray-700 transition-all duration-200 transform hover:-translate-y-1 shadow-lg flex flex-col items-center justify-center border border-gray-700">
                 <PlusCircle className="text-green-400 mb-4" size={40} />
                 <h3 className="text-xl font-bold text-white mb-2">Create New Quiz</h3>
                 <p className="text-gray-300">Generate a quiz from your documents.</p>
               </Link>
-              <Link to="/take-quiz" className="bg-gray-700 p-8 rounded-xl text-center hover:bg-gray-600 transition-all duration-200 transform hover:-translate-y-1 shadow-lg flex flex-col items-center justify-center">
+              <Link to="/take-quiz" className="bg-gray-800 p-8 rounded-xl text-center hover:bg-gray-700 transition-all duration-200 transform hover:-translate-y-1 shadow-lg flex flex-col items-center justify-center border border-gray-700">
                 <BookOpen className="text-purple-400 mb-4" size={40} />
                 <h3 className="text-xl font-bold text-white mb-2">Take a Quiz</h3>
                 <p className="text-gray-300">Practice with existing quizzes.</p>
               </Link>
-              <Link to="/quiz-history" className="bg-gray-700 p-8 rounded-xl text-center hover:bg-gray-600 transition-all duration-200 transform hover:-translate-y-1 shadow-lg flex flex-col items-center justify-center">
+              <Link to="/quiz-history" className="bg-gray-800 p-8 rounded-xl text-center hover:bg-gray-700 transition-all duration-200 transform hover:-translate-y-1 shadow-lg flex flex-col items-center justify-center border border-gray-700">
                 <History className="text-orange-400 mb-4" size={40} />
                 <h3 className="text-xl font-bold text-white mb-2">View Quiz History</h3>
                 <p className="text-gray-300">Review your past attempts.</p>
@@ -70,7 +70,7 @@ const Home = () => {
       )}
 
       {/* Features Section */}
-      <div style={{ background: 'var(--bg-color)', padding: '6rem 0' }}>
+      <div className="bg-gray-900 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">Why Choose Quizzer AI?</h2>
@@ -78,7 +78,7 @@ const Home = () => {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-800 p-8 rounded-xl text-center shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center">
+            <div className="bg-gray-800 p-8 rounded-xl text-center shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center border border-gray-700">
               <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
                 <Zap className="text-white" size={40} />
               </div>
@@ -86,7 +86,7 @@ const Home = () => {
               <p className="text-gray-300">Upload your document and get a comprehensive quiz in seconds using advanced AI technology.</p>
             </div>
             
-            <div className="bg-gray-800 p-8 rounded-xl text-center shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center">
+            <div className="bg-gray-800 p-8 rounded-xl text-center shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center border border-gray-700">
               <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
                 <Target className="text-white" size={40} />
               </div>
@@ -94,7 +94,7 @@ const Home = () => {
               <p className="text-gray-300">Our AI analyzes your content to create relevant, challenging questions that test real understanding.</p>
             </div>
             
-            <div className="bg-gray-800 p-8 rounded-xl text-center shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center">
+            <div className="bg-gray-800 p-8 rounded-xl text-center shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center border border-gray-700">
               <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
                 <Clock className="text-white" size={40} />
               </div>
@@ -106,7 +106,7 @@ const Home = () => {
       </div>
 
       {/* CTA Section */}
-      <div style={{ background: 'var(--bg-color)', padding: '6rem 0' }}>
+      <div className="bg-gray-900 py-24">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-white mb-6">Ready to Get Started?</h2>
           <p className="text-xl text-gray-400 mb-8">Join thousands of learners who are already using Quizzer AI to enhance their studies.</p>
@@ -130,12 +130,12 @@ const Home = () => {
       </div>
 
       {/* Footer */}
-      <footer style={{ background: 'var(--bg-color)', color: 'var(--text-color)', padding: '6rem 0' }}>
+      <footer className="bg-gray-900 text-white py-24 border-t border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p>&copy; {new Date().getFullYear()} Quizzer AI. All rights reserved.</p>
-          <p className="mt-2 text-sm">
-            <Link to="/privacy" className="hover:text-white">Privacy Policy</Link> | 
-            <Link to="/terms" className="hover:text-white">Terms of Service</Link>
+          <p className="mt-2 text-sm text-gray-400">
+            <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link> | 
+            <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
           </p>
         </div>
       </footer>

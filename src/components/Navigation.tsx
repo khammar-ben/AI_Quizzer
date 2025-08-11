@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Home, FileText, BarChart3, User, Info, MessageCircle, Menu, X, LogIn, LogOut, Sun, Moon } from 'lucide-react';
+import { Home, FileText, BarChart3, User, Info, MessageCircle, Menu, X, LogIn, LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const Navigation = () => {
@@ -8,23 +8,6 @@ const Navigation = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Theme state for custom theme
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      return document.documentElement.getAttribute('data-theme') || 'light';
-    }
-    return 'light';
-  });
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
 
   // Hide navigation on auth pages
   const isAuthPage = location.pathname === '/signin' || location.pathname === '/signup';
@@ -68,19 +51,18 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/" className="group flex items-center space-x-3 transition-transform duration-300 hover:scale-105">
-              <div className="relative">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center transform transition-transform duration-300 group-hover:rotate-12 shadow-lg">
-                  <span className="text-white font-bold text-xl">Q</span>
+                <div className="relative">
+                  <div className="w-10 h-10 flex items-center justify-center">
+                  <img src="/favicon.ico" alt="Site icon" className="w-8 h-8" />
+                  </div>
                 </div>
-                <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent dark:text-transparent text-gray-900 dark:bg-clip-text">
-                  Quizzer
-                </span>
-                <span className="text-xs text-gray-400 dark:text-gray-400 text-gray-500 -mt-1">AI Quiz Generator</span>
-              </div>
-            </Link>
+                <div className="flex flex-col">
+                  <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent dark:text-transparent text-gray-900 dark:bg-clip-text">
+                    Quizzer
+                  </span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400 -mt-1">AI Quiz Generator</span>
+                </div>
+              </Link>
           </div>
           
           <div className="hidden md:block">
@@ -127,22 +109,6 @@ const Navigation = () => {
                     <span>Login</span>
                   </Link>
                 )}
-                {/* Custom Theme Toggle Button */}
-                <button
-                  onClick={toggleTheme}
-                  style={{
-                    background: 'var(--card-bg)',
-                    color: 'var(--accent-purple)',
-                    border: '1px solid var(--accent-purple)',
-                    marginLeft: '1rem',
-                    padding: '0.5rem',
-                    borderRadius: '0.5rem',
-                    transition: 'background 0.3s, color 0.3s',
-                  }}
-                  title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-                >
-                  {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                </button>
               </div>
             </div>
           </div>
@@ -201,22 +167,6 @@ const Navigation = () => {
                     <span>Login</span>
                   </Link>
                 )}
-                {/* Custom Theme Toggle Button (Mobile) */}
-                <button
-                  onClick={toggleTheme}
-                  style={{
-                    background: 'var(--card-bg)',
-                    color: 'var(--accent-purple)',
-                    border: '1px solid var(--accent-purple)',
-                    marginLeft: '1rem',
-                    padding: '0.5rem',
-                    borderRadius: '0.5rem',
-                    transition: 'background 0.3s, color 0.3s',
-                  }}
-                  title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-                >
-                  {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                </button>
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ class Config:
     DATABASE_NAME: str = os.getenv("DATABASE_NAME", "quizzer_db")
     
     # OpenAI
-    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "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")
+    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "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")
     
     # CORS
     ALLOWED_ORIGINS: list = os.getenv("ALLOWED_ORIGINS", "*").split(",")

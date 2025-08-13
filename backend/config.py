@@ -12,8 +12,8 @@ class Config:
     MONGO_URI: str = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
     DATABASE_NAME: str = os.getenv("DATABASE_NAME", "quizzer_db")
     
-    # OpenAI
-    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "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")
+    # OpenAI - Will be loaded from database or environment
+    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
     
     # CORS
     ALLOWED_ORIGINS: list = os.getenv("ALLOWED_ORIGINS", "*").split(",")
@@ -21,6 +21,37 @@ class Config:
     # Server
     HOST: str = os.getenv("HOST", "0.0.0.0")
     PORT: int = int(os.getenv("PORT", "8000"))
+    
+    def get_openai_api_key(self) -> str:
+        """Get OpenAI API key from database or environment"""
+        # First try environment variable
+        if self.OPENAI_API_KEY:
+            return self.OPENAI_API_KEY
+        
+        # If not in environment, try to get from database
+        try:
+            from pymongo import MongoClient
+            client = MongoClient(self.MONGO_URI)
+            database = client[self.DATABASE_NAME]
+            
+            if "api_keys" in database.list_collection_names():
+                api_keys_collection = database["api_keys"]
+                # Look for an active OpenAI API key
+                api_key_doc = api_keys_collection.find_one({
+                    "is_active": True,
+                    "api_key": {"$regex": "^sk-proj-"}
+                })
+                
+                if api_key_doc:
+                    client.close()
+                    return api_key_doc["api_key"]
+            
+            client.close()
+        except Exception:
+            pass
+        
+        # Return empty string if no key found
+        return ""
 
 # Production Configuration
 class ProductionConfig(Config):

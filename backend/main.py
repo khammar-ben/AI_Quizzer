@@ -143,7 +143,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-openai_client = OpenAI(api_key=config.OPENAI_API_KEY)
+openai_client = OpenAI(api_key=config.get_openai_api_key())
 
 # Dependency to get current user based on token (updated for MongoDB)
 def get_current_user(token: str = Depends(oauth2_scheme)):
